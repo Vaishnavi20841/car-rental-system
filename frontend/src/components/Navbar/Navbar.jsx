@@ -5,7 +5,7 @@ import { FaBars, FaTimes, FaUser, FaSignOutAlt } from "react-icons/fa";
 import logo from "../../assets/logocar.png";
 import { navbarStyles as styles } from "../../assets/dummyStyles";
 import axios from "axios";
-import API_BASE from "../../config/api";
+import API_BASE from "../config/api";
 
 const LOGOUT_ENDPOINT = "/api/auth/logout";
 
