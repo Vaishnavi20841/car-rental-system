@@ -23,6 +23,7 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { myBookingsStyles as s } from "../../assets/dummyStyles";
+import API_BASE from "../../config/api";
 
 const base =
   import.meta.env.VITE_API_URL ||

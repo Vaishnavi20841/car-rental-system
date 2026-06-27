@@ -20,6 +20,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import API_BASE from "../../config/api";
 // import carsData from "../CarPage/carsData";
 import { carDetailStyles } from "../../assets/dummyStyles";
 
