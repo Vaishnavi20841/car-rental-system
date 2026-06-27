@@ -15,6 +15,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [loading, setLoading] = useState(false);
+  import API_BASE from "../config/api";
 
   useEffect(() => {
     setIsActive(true);
@@ -28,10 +29,7 @@ const LoginPage = () => {
     setLoading(true);
     try {
 
-      const base =
-  import.meta.env.VITE_API_URL ||
-  "https://car-rental-system-7x2i.onrender.com";
-
+      
 const url = `${base}/api/auth/login`;
       
 
