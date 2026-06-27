@@ -27,8 +27,13 @@ const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const base = "http://localhost:5000";
-      const url = `${base}/api/auth/login`;
+
+      const base =
+  import.meta.env.VITE_API_URL ||
+  "https://car-rental-system-7x2i.onrender.com";
+
+const url = `${base}/api/auth/login`;
+      
 
       console.log("Sending login request to:", url);
       const res = await axios.post(url, credentials, {
