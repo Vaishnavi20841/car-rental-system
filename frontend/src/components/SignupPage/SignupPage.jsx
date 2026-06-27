@@ -47,7 +47,9 @@ const SignupPage = () => {
 
     setLoading(true);
     try {
-      const base = "http://localhost:5000";
+      const base =
+  import.meta.env.VITE_API_URL ||
+  "https://car-rental-system-7x2i.onrender.com";
       const url = `${base}/api/auth/register`;
 
       const res = await axios.post(url, formData, {

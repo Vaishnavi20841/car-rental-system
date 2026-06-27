@@ -23,11 +23,14 @@ const HomeCars = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const abortRef = useRef(null);
 
-  const base = "http://localhost:5000";
-  const api = axios.create({
-    baseURL: base,
-    headers: { Accept: "application/json" },
-  });
+  const base =
+  import.meta.env.VITE_API_URL ||
+  "https://car-rental-system-7x2i.onrender.com";
+
+const api = axios.create({
+  baseURL: base,
+  headers: { Accept: "application/json" },
+});
   const limit = 6;
   const fallbackImage = `${base}/uploads/default-car.png`;
 

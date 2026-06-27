@@ -20,29 +20,42 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import carsData from "../CarPage/carsData";
+// import carsData from "../CarPage/carsData";
 import { carDetailStyles } from "../../assets/dummyStyles";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_API_URL ||
+  "https://car-rental-system-7x2i.onrender.com";
+
 const api = axios.create({
   baseURL: API_BASE,
-  headers: { Accept: "application/json" },
+  headers: {
+    Accept: "application/json",
+  },
 });
 
 const todayISO = () => new Date().toISOString().split("T")[0];
 
 const buildImageSrc = (image) => {
   if (!image) return `${API_BASE}/uploads/default-car.png`;
+
   if (Array.isArray(image)) image = image[0];
+
   if (!image || typeof image !== "string")
     return `${API_BASE}/uploads/default-car.png`;
+
   const t = image.trim();
+
   if (!t) return `${API_BASE}/uploads/default-car.png`;
-  if (t.startsWith("http://") || t.startsWith("https://")) return t;
-  if (t.startsWith("/")) return `${API_BASE}${t}`;
+
+  if (t.startsWith("http://") || t.startsWith("https://"))
+    return t;
+
+  if (t.startsWith("/"))
+    return `${API_BASE}${t}`;
+
   return `${API_BASE}/uploads/${t}`;
 };
-
 const handleImageError = (
   e,
   fallback = `${API_BASE}/uploads/default-car.png`
@@ -101,12 +114,12 @@ const CarDetailPage = () => {
       return;
     }
 
-    const local = carsData.find((c) => String(c.id) === String(id));
-    if (local) {
-      setCar(local);
-      setCurrentImage(0);
-      return;
-    }
+    // const local = carsData.find((c) => String(c.id) === String(id));
+    // if (local) {
+    //   setCar(local);
+    //   setCurrentImage(0);
+    //   return;
+    // }
 
     const controller = new AbortController();
     fetchControllerRef.current = controller;
@@ -156,7 +169,9 @@ const CarDetailPage = () => {
     ...(car.image ? (Array.isArray(car.image) ? car.image : [car.image]) : []),
   ].filter(Boolean);
 
-  const price = Number(car.price ?? car.dailyRate ?? 0) || 0;
+  const price = Number(
+  car.pricePerDay ?? car.price ?? car.dailyRate ?? 0
+);
   const days = calculateDays(formData.pickupDate, formData.returnDate);
   const calculateTotal = () => days * price;
 
@@ -308,9 +323,14 @@ const CarDetailPage = () => {
               )}
             </div>
 
-            <h1 className={carDetailStyles.carName}>{car.make}</h1>
+
+            <h1 className={carDetailStyles.carName}>
+  {car.make
+    ? `${car.make} ${car.model || ""}`
+    : car.name}
+</h1>
             <p className={carDetailStyles.carPrice}>
-              ${price}{" "}
+              ₹{price}{" "}
               <span className={carDetailStyles.pricePerDay}>/ day</span>
             </p>
 

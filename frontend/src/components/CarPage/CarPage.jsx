@@ -23,6 +23,7 @@ const daysBetween = (from, to) =>
   Math.ceil((startOfDay(to) - startOfDay(from)) / MS_PER_DAY);
 
 const CarPage = () => {
+  console.log("CarPage component rendered");
   const navigate = useNavigate();
 
   const [cars, setCars] = useState([]);
@@ -32,7 +33,11 @@ const CarPage = () => {
   const abortControllerRef = useRef(null);
 
   // base URL for API (use env var in production)
-  const base = "http://localhost:5000";
+  const base =
+  import.meta.env.VITE_API_URL ||
+  "https://car-rental-system-7x2i.onrender.com";
+
+console.log("API =", base);
 
   // number of cars to fetch (backend should accept limit param)
   const limit = 12;
@@ -67,10 +72,13 @@ const CarPage = () => {
 
     try {
       const res = await axios.get(`${base}/api/cars`, {
-        params: { limit },
-        signal: controller.signal,
-        headers: { Accept: "application/json" },
-      });
+  params: { limit },
+  signal: controller.signal,
+  headers: { Accept: "application/json" },
+});
+
+console.log("Response =", res.data);
+
 
       const json = res.data;
       setCars(Array.isArray(json.data) ? json.data : json.data ?? json);
@@ -376,6 +384,7 @@ const CarPage = () => {
                 car.name ||
                 "Unnamed";
               const imageSrc = buildImageSrc(car.image) || fallbackImage;
+              console.log("Image URL:", imageSrc);
               const disabled = isBookDisabled(car);
 
               return (
