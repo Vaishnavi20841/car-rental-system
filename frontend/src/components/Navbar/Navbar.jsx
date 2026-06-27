@@ -5,6 +5,7 @@ import { FaBars, FaTimes, FaUser, FaSignOutAlt } from "react-icons/fa";
 import logo from "../../assets/logocar.png";
 import { navbarStyles as styles } from "../../assets/dummyStyles";
 import axios from "axios";
+import API_BASE from "../../config/api";
 
 const LOGOUT_ENDPOINT = "/api/auth/logout";
 
@@ -28,9 +29,7 @@ const Navbar = () => {
   const buttonRef = useRef(null);
   const abortRef = useRef(null);
 
-  const base =
-  import.meta.env.VITE_API_URL ||
-  "https://car-rental-system-7x2i.onrender.com";
+  
   const api = axios.create({
     baseURL: base,
     headers: { Accept: "application/json" },

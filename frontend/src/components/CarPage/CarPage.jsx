@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import axios from "axios";
 import { carPageStyles } from "../../assets/dummyStyles";
+import API_BASE from "../../config/api";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const startOfDay = (d) => {
@@ -33,9 +34,7 @@ const CarPage = () => {
   const abortControllerRef = useRef(null);
 
   // base URL for API (use env var in production)
-  const base =
-  import.meta.env.VITE_API_URL ||
-  "https://car-rental-system-7x2i.onrender.com";
+  
 
 console.log("API =", base);
 

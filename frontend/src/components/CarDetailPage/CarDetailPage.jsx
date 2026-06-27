@@ -24,9 +24,7 @@ import API_BASE from "../../config/api";
 // import carsData from "../CarPage/carsData";
 import { carDetailStyles } from "../../assets/dummyStyles";
 
-const API_BASE =
-  import.meta.env.VITE_API_URL ||
-  "https://car-rental-system-7x2i.onrender.com";
+
 
 const api = axios.create({
   baseURL: API_BASE,

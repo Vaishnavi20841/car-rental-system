@@ -25,9 +25,7 @@ import {
 import { myBookingsStyles as s } from "../../assets/dummyStyles";
 import API_BASE from "../../config/api";
 
-const base =
-  import.meta.env.VITE_API_URL ||
-  "https://car-rental-system-7x2i.onrender.com";
+
 const TIMEOUT = 15000;
 
 // ---------- Helpers ----------
