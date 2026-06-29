@@ -98,14 +98,14 @@ export const createBooking = async (req, res) => {
     const createdArr = await Booking.create([bookingData], { session });
     const createdBooking = createdArr[0];
 
-    const bookingEntry = {
-      bookingId: createdBooking._id,
-      pickupDate: createdBooking.pickupDate,
-      returnDate: createdBooking.returnDate,
-      status: createdBooking.status,
-    };
+    // const bookingEntry = {
+    //   bookingId: createdBooking._id,
+    //   pickupDate: createdBooking.pickupDate,
+    //   returnDate: createdBooking.returnDate,
+    //   status: createdBooking.status,
+    // };
 
-    await Car.findByIdAndUpdate(carId, { $push: { bookings: bookingEntry } }, { session });
+    // await Car.findByIdAndUpdate(carId, { $push: { bookings: bookingEntry } }, { session });
 
     await session.commitTransaction();
     session.endSession();
