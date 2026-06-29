@@ -3,7 +3,8 @@ import Booking from "../models/bookingModel.js";
 import Stripe from "stripe";
 import dotenv from "dotenv";
 dotenv.config();
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
+const CLIENT_URL =
+  process.env.FRONTEND_URL || "http://localhost:5173";
 const STRIPE_API_VERSION = "2022-11-15";
 
 const getStripe = () => {
@@ -125,6 +126,7 @@ export const createCheckoutSession = async (req, res) => {
 export const confirmPayment = async (req, res) => {
   try {
     const { session_id } = req.query;
+    console.log("Session ID:", session_id);
     if (!session_id) return res.status(400).json({ success: false, message: "session_id required" });
 
     let stripe;
@@ -133,6 +135,9 @@ export const confirmPayment = async (req, res) => {
     }
 
     const session = await stripe.checkout.sessions.retrieve(session_id);
+    console.log("Stripe session:", session.id);
+console.log("Payment status:", session.payment_status);
+console.log("Metadata:", session.metadata);
     if (!session) return res.status(404).json({ success: false, message: "Session not found" });
     if (session.payment_status !== "paid") return res.status(400).json({ success: false, message: `Payment not completed. status=${session.payment_status}`, session });
 
@@ -157,7 +162,7 @@ export const confirmPayment = async (req, res) => {
     }
 
     if (!order) return res.status(404).json({ success: false, message: "Booking not found for this session", session });
-
+console.log("Booking after update:", order);
     return res.json({ success: true, order });
   } catch (err) {
     console.error("confirmPayment error:", err);
