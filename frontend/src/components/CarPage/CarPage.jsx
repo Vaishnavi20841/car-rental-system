@@ -24,7 +24,7 @@ const daysBetween = (from, to) =>
   Math.ceil((startOfDay(to) - startOfDay(from)) / MS_PER_DAY);
 
 const CarPage = () => {
-  console.log("CarPage component rendered");
+ 
   const navigate = useNavigate();
 
   const [cars, setCars] = useState([]);
@@ -36,13 +36,13 @@ const CarPage = () => {
   // base URL for API (use env var in production)
   
 
-console.log("API =", base);
+console.log("API =", API_BASE);
 
   // number of cars to fetch (backend should accept limit param)
   const limit = 12;
 
   // fallback image (served from backend uploads or remote placeholder)
-  const fallbackImage = `${base}/uploads/default-car.png`;
+ const fallbackImage = `${API_BASE}/uploads/default-car.png`;
 
   useEffect(() => {
     fetchCars();
@@ -70,13 +70,13 @@ console.log("API =", base);
     abortControllerRef.current = controller;
 
     try {
-      const res = await axios.get(`${base}/api/cars`, {
+      const res = await axios.get(`${API_BASE}/api/cars`, {
   params: { limit },
   signal: controller.signal,
   headers: { Accept: "application/json" },
 });
 
-console.log("Response =", res.data);
+
 
 
       const json = res.data;
@@ -107,9 +107,9 @@ console.log("Response =", res.data);
       return trimmed;
     }
     if (trimmed.startsWith("/")) {
-      return `${base}${trimmed}`;
+     return `${API_BASE}${trimmed}`;
     }
-    return `${base}/uploads/${trimmed}`;
+    return `${API_BASE}/uploads/${trimmed}`;
   };
 
   const handleImageError = (e) => {
