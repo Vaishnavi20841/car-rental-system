@@ -9,6 +9,7 @@ import { connectDB } from "./config/db.js";
 import authRouter from "./routes/authRoutes.js";
 import carRouter from "./routes/carRoutes.js";
 import bookingRouter from "./routes/bookingRoutes.js";
+import adminRouter from "./routes/admin.route.js";
 
 import paymentRouter from "./routes/paymentRoutes.js";
 
@@ -46,6 +47,7 @@ app.use("/api/cars", carRouter);
 app.use("/api/bookings", bookingRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/payments", paymentRouter);
+app.use("/api/admin", adminRouter);
 
 app.get("/api/ping", (req, res) => res.json({ ok: true, time: Date.now() }));
 

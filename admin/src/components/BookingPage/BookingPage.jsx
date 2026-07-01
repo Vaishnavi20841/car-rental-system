@@ -24,8 +24,13 @@ import axios from "axios";
 import { BookingPageStyles, statusConfig } from "../../assets/dummyStyles";
 
 // Constants and configuration
-const baseURL = "http://localhost:5000";
-const api = axios.create({ baseURL, headers: { Accept: "application/json" } });
+const baseURL = import.meta.env.VITE_API_URL;
+const api = axios.create({
+  baseURL,
+  headers: {
+    Accept: "application/json",
+  },
+});
 
 // Utility functions
 const formatDate = (s) => {

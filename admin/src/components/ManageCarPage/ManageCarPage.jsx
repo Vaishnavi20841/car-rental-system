@@ -387,6 +387,7 @@ const ManageCarPage = () => {
     try {
       const res = await api.get("/api/cars?limit=100");
       const raw = Array.isArray(res.data) ? res.data : res.data.data || [];
+      console.log("Cars from API:", raw);
       setCars(
         raw.map((c, i) => ({
           ...buildSafeCar(c, i),
