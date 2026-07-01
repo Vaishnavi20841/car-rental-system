@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import API_BASE from "../config/api";
 import logo from "../../assets/logocar.png";
 import { loginStyles } from "../../assets/dummyStyles";
 
@@ -15,7 +16,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [loading, setLoading] = useState(false);
-  import API_BASE from "../config/api";
+  
 
   useEffect(() => {
     setIsActive(true);
@@ -30,7 +31,7 @@ const LoginPage = () => {
     try {
 
       
-const url = `${base}/api/auth/login`;
+const url = `${API_BASE}/api/auth/login`;
       
 
       console.log("Sending login request to:", url);
