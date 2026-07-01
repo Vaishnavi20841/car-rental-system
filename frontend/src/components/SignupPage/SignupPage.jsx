@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../../assets/logocar.png";
 import { signupStyles } from "../../assets/dummyStyles";
-import API_BASE from "../config/api";
+import API_BASE from "../../config/api";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ const SignupPage = () => {
     setLoading(true);
     try {
      
-      const url = `${base}/api/auth/register`;
+    const url = `${API_BASE}/api/auth/register`;
 
       const res = await axios.post(url, formData, {
         headers: { "Content-Type": "application/json" },
