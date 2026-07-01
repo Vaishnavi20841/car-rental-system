@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import API_BASE from "../config/api";
+import API_BASE from "../../config/api";
 import logo from "../../assets/logocar.png";
 import { loginStyles } from "../../assets/dummyStyles";
 

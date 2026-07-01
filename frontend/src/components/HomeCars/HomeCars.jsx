@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight, Users, Fuel, Gauge, CheckCircle, Zap } from "lucide-react";
 import axios from "axios";
 import { homeCarsStyles as styles } from "../../assets/dummyStyles";
-import API_BASE from "../config/api";
+import API_BASE from "../../config/api";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const startOfDay = (d) => {
@@ -27,11 +27,11 @@ const HomeCars = () => {
   
 
 const api = axios.create({
-  baseURL: base,
+  baseURL: API_BASE,
   headers: { Accept: "application/json" },
 });
   const limit = 6;
-  const fallbackImage = `${base}/uploads/default-car.png`;
+  const fallbackImage = `${API_BASE}/uploads/default-car.png`;
 
   useEffect(() => {
     const t = setTimeout(() => setAnimateCards(true), 300);
@@ -82,8 +82,9 @@ const api = axios.create({
     const t = image.trim();
     if (!t) return "";
     if (t.startsWith("http://") || t.startsWith("https://")) return t;
-    if (t.startsWith("/")) return `${base}${t}`;
-    return `${base}/uploads/${t}`;
+    if (t.startsWith("/")) return `${API_BASE}${t}`;
+
+return `${API_BASE}/uploads/${t}`;
   };
 
   const handleImageError = (e) => {
